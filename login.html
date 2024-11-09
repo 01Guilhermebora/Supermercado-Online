@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login e Cadastro</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2 id="formTitle">Bem-vindo</h2>
+            <p id="formDescription">Por favor, faça login ou cadastre-se</p>
+            
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Usuário" required>
+                
+                <div class="password-container">
+                    <input type="password" id="password" placeholder="Senha" required>
+                    <span class="toggle-password" onclick="togglePasswordVisibility('password')">👁️</span>
+                </div>
+                
+                <input type="email" id="email" placeholder="E-mail" style="display: none;">
+                
+                <div id="addressFields" style="display: none;">
+                    <input type="text" id="rua" placeholder="Rua">
+                    <input type="text" id="cidade" placeholder="Cidade">
+                    <input type="text" id="estado" placeholder="Estado">
+                </div>
+                
+                <div class="password-container" id="confirmPasswordContainer" style="display: none;">
+                    <input type="password" id="confirmPassword" placeholder="Confirmar Senha">
+                    <span class="toggle-password" onclick="togglePasswordVisibility('confirmPassword')">👁️</span>
+                </div>
+                
+                <button type="submit" id="submitButton">Entrar</button>
+            </form>
+            
+            <p id="toggleFormText">Ainda não tem uma conta? <span id="toggleFormLink" style="color: #007dc3; cursor: pointer;">Cadastre-se</span></p>
+            <p class="error-message" id="errorMessage"></p>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

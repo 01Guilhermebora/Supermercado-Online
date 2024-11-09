@@ -1,0 +1,180 @@
+/* Estilos Globais */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Barra de navegação */
+header {
+    background-color: #007dc3;
+    padding: 20px;
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    width: 150px;
+}
+
+.search-bar input[type="text"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 300px;
+}
+
+.search-bar button {
+    padding: 10px;
+    margin-left: 10px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart a {
+    color: #ffffff;
+    font-weight: bold;
+    background-color:#ffcc00 ; /* Cor destacada para o carrinho */
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.cart a:hover {
+    background-color: #ffcc00;
+}
+
+/* Categorias com estilo semelhante ao de busca */
+.categories {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+}
+
+.category-item {
+    background-color: white;
+    color: #333;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 300px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.category-item:hover {
+    background-color:#007dc3 ;
+    border-color: #007dc3;
+}
+
+.product-list {
+    display: grid; /* Ativa o grid */
+    grid-template-columns: repeat(5, 1fr); /* 5 colunas */
+    gap: 10px; /* Espaço entre os itens */
+    margin: 20px; /* Margem externa */
+}
+
+.product-item {
+    border: 1px solid #ccc; /* Borda do item do produto */
+    border-radius: 5px; /* Cantos arredondados */
+    padding: 10px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto */
+}
+
+.product-image-container {
+    width: 100%; /* O contêiner ocupa 100% da largura do item */
+    height: 150px; /* Altura fixa para o contêiner */
+    overflow: hidden; /* Esconde parte da imagem que ultrapassa o contêiner */
+    display: flex; /* Usando flexbox para centralizar a imagem */
+    align-items: center; /* Alinha verticalmente a imagem no centro */
+    justify-content: center; /* Alinha horizontalmente a imagem no centro */
+}
+
+.product-image {
+    width: auto; /* Mantém a proporção da imagem */
+    height: 100%; /* A imagem ocupa toda a altura do contêiner */
+    max-width: none; /* Remove a limitação de largura para não ser cortada */
+}
+
+
+button {
+    background-color: #007dc3;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #007dc3;
+}
+
+
+
+/* Mensagem de sucesso de adição ao carrinho */
+.success-message {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #28a745;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 1000;
+    opacity: 0.95;
+}
+
+/* Mensagem de finalização da compra */
+.final-message {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ff9800;
+    color: white;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 1000;
+}
+
+/* Estilo do rodapé */
+footer {
+    background-color: #007dc3;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+/* Estilo para alinhar a imagem e o texto do logo */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px; /* Tamanho da imagem */
+    margin-right: 10px; /* Espaço entre a imagem e o texto */
+}
+
+.logo span {
+    font-size: 24px; /* Tamanho do texto "Supermercado" */
+    font-weight: bold;
+    color: white; /* Cor do texto */
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento</title>
+    <link rel="stylesheet" href="pagamento.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.0/qrious.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="logo.png" alt="Supermercado">
+            </div>
+            <div class="cart">
+                <a href="carrinho.html">Carrinho</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="paymentSection">
+        <h2>Forma de Pagamento</h2>
+        <div>
+            <input type="radio" id="creditCard" name="payment" value="cartao">
+            <label for="creditCard">Cartão de Crédito</label><br>
+            <input type="radio" id="pix" name="payment" value="pix">
+            <label for="pix">Pix</label><br>
+            <button id="confirmarPagamentoBtn">OK</button>
+        </div>
+        <p id="errorMessage" style="color: red; text-align: center; margin-top: 10px;"></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Supermercado Online. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const confirmarPagamentoBtn = document.getElementById('confirmarPagamentoBtn');
+
+            confirmarPagamentoBtn.addEventListener('click', () => {
+                const paymentMethod = document.querySelector('input[name="payment"]:checked');
+                const errorMessage = document.getElementById('errorMessage');
+
+                if (paymentMethod) {
+                    const paymentSuccess = processPayment(paymentMethod.value);
+
+                    if (paymentSuccess) {
+                        // Redireciona para a página de sucesso
+                        location.href = 'compraSucesso.html';
+                    } else {
+                        errorMessage.innerText = 'O pagamento falhou. Tente novamente.';
+                    }
+                } else {
+                    errorMessage.innerText = 'Por favor, escolha uma forma de pagamento.';
+                }
+            });
+        });
+
+        function processPayment(method) {
+            if (method === 'cartao') {
+                return true;
+            } else if (method === 'pix') {
+                return false;
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>

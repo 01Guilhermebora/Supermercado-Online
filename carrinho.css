@@ -1,0 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #007dc3;
+    padding: 15px;
+}
+
+.logo img {
+    height: 50px;
+}
+
+#cartSection, #paymentSection {
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ccc; /* Borda para seções */
+    border-radius: 8px; /* Bordas arredondadas */
+    background-color: #f9f9f9; /* Fundo claro */
+}
+
+h2 {
+    color: #007dc3; /* Cor do título */
+}
+
+h3 {
+    color: #333; /* Cor dos subtítulos */
+}
+
+/* Estilo para os campos de entrada e rótulos */
+input[type="text"] {
+    width: 100%; /* Largura total */
+    padding: 10px; /* Espaçamento interno */
+    margin: 10px 0; /* Margem superior e inferior */
+    border: 1px solid #ccc; /* Borda */
+    border-radius: 5px; /* Bordas arredondadas */
+}
+
+label {
+    font-weight: bold; /* Negrito para os rótulos */
+    color: #333; /* Cor dos rótulos */
+}
+
+/* Estilo específico para a seção Pix */
+.pix-code {
+    background-color: #e0f7fa; /* Fundo leve para o código do Pix */
+    padding: 10px;
+    border: 1px solid #007dc3; /* Borda azul */
+    border-radius: 5px; /* Bordas arredondadas */
+    display: inline-block; /* Mantém o código em bloco */
+    font-size: 1.2em; /* Tamanho do texto */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007dc3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px; /* Margem superior para o botão */
+}
+
+button:hover {
+    background-color: #005a8c;
+}
+
+/* Estilo para os itens no carrinho */
+.cart-item {
+    font-size: 0.9em; /* Reduz o tamanho do texto */
+    padding: 8px; /* Reduz o espaçamento interno */
+    margin-bottom: 10px; /* Espaçamento entre itens */
+    border: 1px solid #ddd; /* Borda leve ao redor do item */
+    border-radius: 5px; /* Bordas arredondadas */
+    background-color: #f3f3f3; /* Fundo mais claro */
+}
+
+.cart-item h3 {
+    margin: 0; /* Remove margens superiores */
+    font-size: 1em; /* Tamanho ajustado do título */
+}
+
+.cart-item p {
+    margin: 4px 0; /* Margem menor entre as linhas */
+    font-size: 0.9em; /* Texto menor para os detalhes */
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #007dc3;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

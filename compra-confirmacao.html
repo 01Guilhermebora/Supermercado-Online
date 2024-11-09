@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra Realizada</title>
+    <link rel="stylesheet" href="pagamento.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9; /* Fundo claro para toda a página */
+        }
+
+        #confirmationSection {
+            text-align: center;
+            padding: 30px;
+            background-color: #ffffff; /* Fundo branco para a seção de confirmação */
+            border: 1px solid #ccc; /* Borda para a seção */
+            border-radius: 8px; /* Bordas arredondadas */
+            margin: 20px auto; /* Centraliza a seção */
+            max-width: 600px; /* Limita a largura da seção */
+        }
+
+        h2 {
+            color: #007dc3; /* Cor do título */
+        }
+
+        h1 {
+            color: #007dc3; /* Cor dos subtítulos */
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #007dc3;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <section id="confirmationSection">
+        <h2 id="successMessage">Compra Realizada com Sucesso!</h2>
+        <h1 id="backMessage" style="display: none;">Voltar para Compra</h1>
+    </section>
+
+    <script>
+        // Mostra a primeira mensagem por 3 segundos
+        setTimeout(() => {
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('backMessage').style.display = 'block';
+        }, 3000); // Exibe a segunda mensagem após 3 segundos
+
+        // Redireciona para o supermercado após 5 segundos
+        setTimeout(() => {
+            window.location.href = 'supermercado.html'; // Redireciona para o supermercado
+        }, 5000);
+    </script>
+
+    <footer>
+        &copy; 2024 Seu Supermercado
+    </footer>
+</body>
+</html>

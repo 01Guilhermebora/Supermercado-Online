@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <link rel="stylesheet" href="carrinho.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="Imagens/Imagem logo.jpg" alt="Supermercado">
+            </div>
+            <div class="cart">
+                <a href="supermercado.html">Voltar ao Supermercado</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="cartSection">
+        <h2>Carrinho</h2>
+        <div id="cartItems"></div>
+        <p id="totalPrice"></p>
+        <button onclick="showPaymentOptions()">Finalizar Compra</button>
+    </section>
+
+    <!-- Seção de Pagamento -->
+    <!-- Seção de Pagamento -->
+<section id="paymentSection" style="display: none;">
+    <h2>Forma de Pagamento</h2>
+    <div>
+        <input type="radio" id="creditCard" name="payment" value="cartao" onclick="toggleCardInfo()">
+        <label for="creditCard">Cartão de Crédito</label><br>
+        <input type="radio" id="debitCard" name="payment" value="debito" onclick="toggleCardInfo()">
+        <label for="debitCard">Cartão de Débito</label><br>
+        <input type="radio" id="pix" name="payment" value="pix" onclick="generatePixCode()">
+        <label for="pix">Pix</label><br>
+        
+        <div id="cardInfo" style="display: none;">
+            <h3>Informações do Cartão</h3>
+            <label for="cardNumber">Número do Cartão:</label>
+            <input type="text" id="cardNumber" placeholder="XXXX-XXXX-XXXX-XXXX" required maxlength="16" pattern="\d{16}" title="Insira 16 dígitos."><br>
+            
+            <label for="cardHolder">Nome do Titular:</label>
+            <input type="text" id="cardHolder" placeholder="Nome como no cartão" required><br>
+            
+            <label for="expiryDate">Data de Validade:</label>
+            <input type="text" id="expiryDate" placeholder="MM/AA" required maxlength="5" title="Formato MM/AA" oninput="formatExpiryDate(event)"><br>
+            
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" placeholder="XXX" required maxlength="3" pattern="\d{3}" title="Insira 3 dígitos."><br>
+        </div>
+        
+        <div id="pixInfo" style="display: none;">
+            <h3>Pagamento via Pix</h3>
+            <p>Para concluir seu pagamento via Pix, utilize o código abaixo:</p>
+            <div class="pix-code" id="pixCode" style="font-weight: bold;"></div>
+            <p>Copie e cole o código no seu app de pagamentos.</p>
+        </div>
+
+        <button onclick="confirmPayment()">OK</button>
+    </div>
+    <div id="confirmationMessage"></div>
+</section>
+
+
+    <footer>
+        <p>&copy; 2024 Supermercado Online. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="carrinho.js"></script>
+    <script>
+        // Função para formatar a data do cartão (MM/AA)
+        function formatExpiryDate(event) {
+            const input = event.target;
+            let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
+
+            if (value.length <= 2) {
+                // Apenas o mês (MM)
+                input.value = value;
+            } else {
+                // Insere a barra (/) entre o mês e o ano
+                input.value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+        }
+
+        // Função para gerar um código Pix aleatório
+        function generatePixCode() {
+            const pixCode = Math.random().toString(36).substring(2, 15).toUpperCase(); // Gera uma string aleatória
+            document.getElementById('pixCode').innerText = pixCode; // Exibe o código na tela
+            document.getElementById('pixInfo').style.display = 'block'; // Mostra as informações do Pix
+            document.getElementById('cardInfo').style.display = 'none'; // Esconde informações do cartão
+        }
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            displayCartItems(cart);
+        });
+
+        function displayCartItems(cart) {
+            const cartItems = document.getElementById('cartItems');
+            const totalPrice = document.getElementById('totalPrice');
+            cartItems.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Carrinho vazio!</p>';
+                totalPrice.innerText = 'Total: R$ 0.00';
+                return;
+            }
+
+            let total = 0;
+            cart.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.innerHTML = `${item.quantity}x ${item.name} - R$ ${(item.price * item.quantity).toFixed(2)} 
+                    <button onclick="removeItem(${index})">Remover</button>`;
+                cartItems.appendChild(itemDiv);
+                total += item.price * item.quantity;
+            });
+
+            totalPrice.innerText = `Total: R$ ${total.toFixed(2)}`;
+        }
+
+        function removeItem(index) {
+            // Remove o item do carrinho
+            cart.splice(index, 1);
+            // Atualiza o localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            // Atualiza a exibição do carrinho
+            displayCartItems(cart);
+        }
+
+        function showPaymentOptions() {
+            document.getElementById('cartSection').style.display = 'none'; // Oculta a seção do carrinho
+            document.getElementById('paymentSection').style.display = 'block'; // Mostra a seção de pagamento
+        }
+
+        function toggleCardInfo() {
+            document.getElementById('cardInfo').style.display = 'block'; // Mostra as informações do cartão
+            document.getElementById('pixInfo').style.display = 'none'; // Esconde informações do Pix
+        }
+
+        function confirmPayment() {
+            const paymentMethod = document.querySelector('input[name="payment"]:checked');
+
+            if (paymentMethod) {
+                if (paymentMethod.value === 'cartao' || paymentMethod.value === 'debito') {
+                    const cardNumber = document.getElementById('cardNumber').value;
+                    const cardHolder = document.getElementById('cardHolder').value;
+                    const expiryDate = document.getElementById('expiryDate').value;
+                    const cvv = document.getElementById('cvv').value;
+
+                    if (!cardNumber || !cardHolder || !expiryDate || !cvv) {
+                        alert('Por favor, preencha todos os campos do cartão.');
+                        return;
+                    }
+                }
+
+                // Limpa o carrinho e redireciona para a página de confirmação
+                localStorage.removeItem('cart');
+                cart = [];
+                location.href = 'compra-confirmacao.html';
+            } else {
+                alert('Por favor, escolha uma forma de pagamento.');
+            }
+        }
+    </script>
+</body>
+</html>
